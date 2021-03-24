@@ -11,17 +11,21 @@
 <body>
     <div class="wrapper">
         <header>
-            <h1>
-                <a href="/">Just Tech News</a>
-            </h1>
-            <nav>
+            <nav class="nav-bar">
+                <a href="/">Home</a>
+
                 {{#if loggedIn}}
                 <a href="/dashboard">dashboard</a>
                 <button id="logout" class="btn-no-style">logout</button>
+
                 {{else}}
                 <a href="/login">login</a>
                 {{/if}}
             </nav>
+
+            <h1 class="page-title">
+                {{#if title}} {{ title }} {{else}}The Tech Blog {{/if}}
+            </h1>
         </header>
         <main>
             {{{ body }}}
