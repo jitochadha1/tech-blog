@@ -43,8 +43,9 @@ router.get('/', withAuth, (req, res) => {
         });
 });
 
-router.get('/create', withAuth, (req, res) => {
-    res.render('post-form', { loggedIn: true, title: 'Your Dashboard', isEdit: false });
+router.post('/create', (req, res) => {
+    console.log(req.session);
+    //res.render('post-form', { loggedIn: true, title: 'Your Dashboard', isEdit: false });
 });
 
 router.get('/edit/:id', withAuth, (req, res) => {

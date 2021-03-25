@@ -14,9 +14,9 @@ async function newFormHandler(event) {
             'Content-Type': 'application/json'
         }
     });
-
+console.log('HERE', response);
     if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/dashboard/create');
     } else {
         alert(response.statusText);
     }
