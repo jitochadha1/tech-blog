@@ -33,6 +33,7 @@ header .nav-bar {
   grid-template-columns: repeat(3, auto) 1fr;
 }
 
+header .nav-bar button,
 header .nav-bar a {
   font-size: 2rem;
   color: var(--secondary);
@@ -49,6 +50,17 @@ header .page-title {
 }
 
 /* #endregion End Header section */
+
+/* #region Page Wide styles */
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+/* #endregion */
 
 /* #region Home Page */
 .post-list {
@@ -90,18 +102,26 @@ header .page-title {
 /* #endregion */
 
 /* #region Login Page */
-.login-form {
+.login-form .card-content {
+  display: grid;
+  gap: 1rem;
+
+  font-size: 2rem;
 }
 
-.login-form .form-header {
+.login-form .card-content div {
+  display: grid;
+  gap: 10px;
 }
 
-.login-form .username-login {
+.login-form input {
+  width: 100%;
+  font-size: 2rem;
 }
 
-.login-form .password-login {
+.login-form button {
+  font-size: 2rem;
 }
-
 /* #endregion */
 
 a {
@@ -155,15 +175,6 @@ textarea {
 
 form label {
   display: block;
-}
-
-.wrapper {
-  width: 100%;
-  min-height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
 }
 
 main {

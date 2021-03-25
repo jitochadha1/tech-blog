@@ -35,12 +35,16 @@ router.get('/', withAuth, (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('dashboard', { posts, loggedIn: true });
+            res.render('dashboard', { posts, loggedIn: true, title: 'Your Dashboard' });
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+router.get('/create', withAuth, (req, res) => {
+    res.render('post-form', { loggedIn: true, title: 'Your Dashboard', isEdit: false });
 });
 
 router.get('/edit/:id', withAuth, (req, res) => {
