@@ -1,35 +1,45 @@
 <article>
     <a href="/dashboard"> &larr; Back to dashboard</a>
-    <h2>
-        Edit Post
-    </h2>
-    <form class="edit-post-form">
-        <div>
-            <input name="post-title" type="text" value="{{post.title}}" />
-            <span>({{format_url post.text}})</span>
-        </div>
-        <div>
-            {{post.vote_count}} {{format_plural "point" post.vote_count}} by you on {{format_date post.created_at}}
-            |
-            <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
-        </div>
-        <button type="submit">Save post</button>
-        <button type="button" class="delete-post-btn">Delete post</button>
-    </form>
+    {{#if loggedIn}}
+    <article class="card">
+        <form class="{{#if isEdit}}edit-post-form{{else}}new-post-form{{/if}}">
+            <div class="card-title">
+                <h2>
+                    {{#if isEdit}}
+                    Edit Post
+                    {{else}}
+                    Create Post
+                    {{/if}}
+                </h2>
+            </div>
+            <div class="card-content">
+                <label for="">
+                    Title
+                </label>
+                <input name="post-title" type="text" value="{{title}}" />
+
+                <label for="">URL</label>
+                <input name="post-url" value="{{text}}">
+
+                <div>
+                    {{#if isEdit}}
+                    <button type="submit">Update post</button>
+                    <button class="delete-post-btn">Delete post</button>
+                    {{else}}
+                    <button type="submit">Save post</button>
+                    {{/if}}
+                </div>
+            </div>
+        </form>
+    </article>
+    {{else}}
+    <div>You are not allowed to edit this post</div>
+    {{/if}}
 </article>
 
-<form class="comment-form">
-    <div>
-        <textarea name="comment-body"></textarea>
-    </div>
-
-    <div>
-        <button type="submit">add comment</button>
-    </div>
-</form>
-
-{{> comments post.comments}}
-
+{{#if isEdit}}
 <script src="/javascript/edit-post.js"></script>
 <script src="/javascript/delete-post.js"></script>
-<script src="/javascript/comment.js"></script>
+{{else}}
+<script src="/javascript/add-post.js"></script>
+{{/if}}

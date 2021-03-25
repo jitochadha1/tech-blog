@@ -78,11 +78,13 @@ router.get('/:id', (req, res) => {
 
 router.post('/', withAuth, (req, res) => {
     // expects {title: 'Taskmaster goes public!', text: 'https://taskmaster.com/press', user_id: 1}
-    Post.create({
+    const newPost = {
         title: req.body.title,
         text: req.body.text,
         user_id: req.session.user_id
-    })
+    };
+    console.log('new', newPost)
+    Post.create(newPost)
         .then(dbPostData => res.json(dbPostData))
         .catch(err => {
             console.log(err);
@@ -103,7 +105,8 @@ router.put('/upvote', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
     Post.update(
         {
-            title: req.body.title
+            title: req.body.title,
+            text: req.body.text
         },
         {
             where: {

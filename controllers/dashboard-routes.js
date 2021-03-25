@@ -43,9 +43,12 @@ router.get('/', withAuth, (req, res) => {
         });
 });
 
-router.post('/create', (req, res) => {
-    console.log(req.session);
-    //res.render('post-form', { loggedIn: true, title: 'Your Dashboard', isEdit: false });
+router.get('/create', (req, res) => {
+    res.render('post-form', {
+        // title: 'Your Dashboard',
+        isEdit: false,
+        loggedIn: true
+    });
 });
 
 router.get('/edit/:id', withAuth, (req, res) => {
@@ -75,10 +78,15 @@ router.get('/edit/:id', withAuth, (req, res) => {
         .then(dbPostData => {
             if (dbPostData) {
                 const post = dbPostData.get({ plain: true });
+                console.log('post', post)
+                console.log(post.user.username, req.session.username)
+                
+                const loggedIn = post.user.username === req.session.username;
 
-                res.render('edit-post', {
-                    post,
-                    loggedIn: true
+                res.render('post-form', {
+                    ...post,
+                    loggedIn,
+                    isEdit: true
                 });
             } else {
                 res.status(404).end();

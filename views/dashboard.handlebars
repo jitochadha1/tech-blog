@@ -19,7 +19,8 @@
     <ul class="post-list">
         {{#each posts as |post|}}
         <li>
-            <a href="/dashboard/edit/{{post.id}}" class="edit-link">
+            <a href="/post/{{post.id}}" class="edit-link">
+                <!--<a href="/dashboard/edit/{{post.id}}" class="edit-link">-->
                 {{> post-info post }}
             </a>
         </li>
