@@ -135,8 +135,18 @@ a:hover {
   color: #3486eb;
 }
 
+.mt-2 {
+  margin-top: 10px;
+}
+.mb-2 {
+  margin-bottom: 10px;
+}
+
+.button,
 button {
   background-color: #225ca3;
+  display: inline-block;
+  text-decoration: none;
   border: 0;
   padding: 1%;
   color: white;
@@ -148,6 +158,11 @@ button {
 
 button:hover {
   background-color: #3486eb;
+}
+
+.input-bg {
+  width: 100%;
+  margin: 5px 0 10px;
 }
 
 .post-list {

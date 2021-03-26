@@ -6,6 +6,7 @@ const withAuth = require('../../utils/auth');
 // get all users
 router.get('/', (req, res) => {
     console.log('======================');
+
     Post.findAll({
         attributes: [
             'id',
@@ -37,6 +38,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+    console.log('User', req.session.user_id)
     Post.findOne({
         where: {
             id: req.params.id
@@ -74,6 +76,7 @@ router.get('/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+        console.log('User', req.session.user_id)
 });
 
 router.post('/', withAuth, (req, res) => {

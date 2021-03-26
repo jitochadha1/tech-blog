@@ -44,6 +44,7 @@ router.get('/', (req, res) => {
 
 // get single post
 router.get('/post/:id', (req, res) => {
+    console.log('User', req.session.user_id)
     Post.findOne({
         where: {
             id: req.params.id
@@ -77,9 +78,13 @@ router.get('/post/:id', (req, res) => {
             }
 
             const post = dbPostData.get({ plain: true });
+            console.log(post, req.session)
+            console.log(req.session.user_id, post.user)
+            const isOwner = post.user.username == req.session.username;
 
             res.render('single-post', {
                 post,
+                isOwner,
                 loggedIn: req.session.loggedIn
             });
         })
